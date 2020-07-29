@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="card text-center">
+    <div class="card-header" style="background-color:#bfd200">
+      <h1>Geen Bus Welcomes you All !!</h1>
+    </div>
+    {{#each data}}
+    <div class="card-body" style="background-color:#f6f4d2">
+      <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <h3 class=" col-lg-5 text-left">{{this.busName}}</h3>
+        <h5 class="col-lg-3 text-left">{{this.starttime}} PM</h5>
+      </div>
+      <div class="row">
+        <i class='fa fa-bus  fa-5x col-lg-2'></i>
+        <h5 class=" col-lg-5 text-left">{{this.busdesc}}</h5>
+        <h5 class="col-lg-3 text-left">{{this.endtime}} AM</h5>
+      </div>
+      <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <h6 class="col-lg-5 text-left">{{this.seats}} seats <span> <b>.</b> </span> {{this.toljourtime}} hrs</h6>
+        <div class="col-lg-3 text-left">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-5 text-left">
+          <div class="row">
+            <span class="col-lg-2 mt-2 mx-2 my-2" style=background-color:#55a630>{{this.rating}} ⭐</span>
+            <h5 class="col-lg-6 text-left mt-2 mx-2 my-2">{{this.tolrateno}} Ratings </h5>
+          </div>
+        </div>
+        <div class="col-lg-3 text-left">
+          <h5 style="color:red">From INR {{this.price}}</h5>
+        </div>
+      </div>
+      <a href="/buses/seats/{{this.id}}" class="btn btn-primary">Check Availabilty</a>
+    </div>
+    <hr style="background-color:#f6f4d2">
+    {{/each}}
+  </div>
+</div>

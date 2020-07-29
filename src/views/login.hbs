@@ -1,0 +1,88 @@
+<div class="container mt-5">
+  <form id="login-form" action="{{action}}" method="{{method}}" _method="{{method}}">
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="validationServer01">Email</label>
+        <input type="email" class="form-control" name="email" quired>
+        {{!-- <div class="valid-feedback">
+          Looks good!
+        </div> --}}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="validationServer03">Password</label>
+        <input type="password" class="form-control" id="validationServer03" name="password" required>
+        <div class="invalid-feedback">
+          Please provide a valid city.
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck3" required>
+        <label class="form-check-label" for="invalidCheck3">
+          Agree to terms and conditions
+        </label>
+        {{!-- <div class="invalid-feedback">
+          You must agree before submitting.
+        </div> --}}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="validation(this)">SignUp</button>
+  </form>
+</div>
+
+<script>
+  const $loginForm = document.querySelector('#login-form')
+  console.log($loginForm)
+
+  function validation() {
+    $loginForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const submitUrl = $loginForm.action
+      const submitMethod = $loginForm.getAttribute("_method");
+      const formData = new FormData($loginForm);
+      let loginDetail = {};
+      for (const fields of formData.entries()) {
+        const [key, value] = fields;
+        loginDetail[key] = value;
+      }
+
+      const config = {
+        method: submitMethod.toUpperCase(),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loginDetail)
+      }
+      console.log(config)
+      fetch(submitUrl, config)
+        .then(response => {
+          if (response.status === 200) {
+            return response.json()
+          } else {
+            throw (new Error(response.status))
+          }
+        }
+        )
+        .then(data => {
+          alert(data.message)
+        })
+        .catch(error => {
+          switch (error.message) {
+            case "400":
+              alert("Please check form values...");
+              break;
+            case "500":
+              alert("Please Try after some time...");
+              break;
+            default:
+              console.error(error);
+          }
+        })
+
+    })
+  }
+</script>

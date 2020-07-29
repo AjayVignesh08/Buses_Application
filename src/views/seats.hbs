@@ -1,0 +1,31 @@
+<div class="container ">
+  <div class="card text-center">
+    <div class="card-header">
+      <h1>Available Seats</h1>
+    </div>
+    <div class="card-body">
+
+      <div class="col-xs-1">
+        {{#each data}}
+        {{#if (seatsplit this.seatno)}} <br> {{/if}}
+        <a><img id="{{this.seatno}}" onclick="changeColor(this)"
+            src="https://img.icons8.com/ios/50/000000/sleeper-chair.png" />
+          {{this.seatno}}</a>
+        {{/each}}
+      </div>
+    </div>
+    <div class="col-xs-1 center-block">
+      <a href="/buses/seats/payments" class="btn btn-primary">Book Now</a>
+    </div>
+  </div>
+</div>
+<script>
+
+  function changeColor(a) {
+    if (a.style.backgroundColor = 'white') { a.style.backgroundColor = 'green' }
+    else {
+      a.style.backgroundColor = 'white'
+    }
+  }
+
+</script>
